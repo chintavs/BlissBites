@@ -23,3 +23,6 @@ Product Owner/Developer - Dakota Smith\
 Developer - Elliot Phillips\
 Developer - Ravi Patel\
 Developer - Aj White
+
+## Standup
+Team meets every Thursday at 4:00pm in CECH Library
