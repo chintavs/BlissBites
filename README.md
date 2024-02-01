@@ -17,7 +17,7 @@ Admins are able to add/update the dessert products users select.
 **When** they click on a food item to “add to cart” <br>
 **Then** the item should be added to the shopping cart <br>
 
-### As a store owner, I want payment processing, so that I can see past transactions and update my inventory
+### As a store owner, I want payment processing, so that I can see past transactions and update my inventory.
 **Given** a user browsed the menu and picked their desired items <br>
 **When** the user finalizes their purchase <br>
 **Then** the system should securely process the payment, log it, and update inventory <br>
