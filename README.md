@@ -40,7 +40,7 @@ Admins are able to add/update the dessert products users select.
 
 ## Team Memebers and Roles
 Github Admin/Developer - Vishvak Chintalapalli\
-Product Owner/Developer - Dakota Smith\
+Product Owner/Scrum Master/Developer - Dakota Smith\
 Developer - Elliot Phillips\
 Developer - Ravi Patel\
 Developer - Aj White
