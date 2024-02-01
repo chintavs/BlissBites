@@ -1,0 +1,18 @@
+{
+  "type":"object",
+  "properties": {
+    "id": {
+      "type": "int"
+    },
+    "name": {
+      "type": "string"
+    },
+    "size": {
+      "type": "int"
+    },
+    "weight": {
+      type: "double"
+    }
+  }
+}
+
