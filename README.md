@@ -12,8 +12,8 @@ Admins are able to add/update the dessert products users select.
 ![Wireframe for BlissBites](StoryBoard.png)
 
 ## Class Diagram
-
+![UML Diagram for BlissBites](UML.png)
 
 ## JSON Schema
-
+![JSON Schema](JSONSchema.txt)
 
