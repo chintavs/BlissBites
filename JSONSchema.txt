@@ -1,23 +1,40 @@
 {
-  "type":"object",
-  "properties": {
-    "id": {
-      "type": "int"
+  {
+    "type":"object",
+    "properties": {
+      "id": {
+        "type": "int"
+      },
+      "name": {
+        "type": "string"
+      },
+      "size": {
+        "type": "int"
+      },
+      "price": {
+        "type": "double"
+      },
+      "description": {
+        "type": "string"
     },
-    "name": {
+      "type": {
       "type": "string"
-    },
-    "size": {
-      "type": "int"
-    },
-    "weight": {
-      "type": "double"
-    },
-    "price": {
-      "type": "double"
-    },
-    "description": {
-      "type": "string"
+    }
+  }
+},
+{
+      "type": "object",
+      "properties": {
+      "id": {
+        "type": "int"
+      },
+      "desert": {
+        "type": "object"
+      },
+      "quantity": {
+        "type": "int"
+      }
+    }
   }
 }
 
