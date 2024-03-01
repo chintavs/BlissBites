@@ -19,7 +19,7 @@
 
                 <h1 class="h1" th:text="${desert.getName()}"></h1>
 
-                <h2 class="h2" th:text="${desert.getCost()}"></h2>
+                <h2 class="h2" th:text="${'$' + desert.getCost()}"></h2>
 
                 <p class="p" th:text="${desert.getDescription()}"></p>
 
