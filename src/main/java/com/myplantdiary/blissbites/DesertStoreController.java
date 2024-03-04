@@ -4,6 +4,7 @@ import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,9 +14,15 @@ import java.util.List;
 @Controller
 public class DesertStoreController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("message", "Welcome to Bliss Bites!");
+        return "index"; // returning index.html
+    }
+
+    @GetMapping("/store")
+    public String store(Model model) {
+        return "store"; // returning store.html
     }
 
     @RequestMapping("/desert/{desertId}")
