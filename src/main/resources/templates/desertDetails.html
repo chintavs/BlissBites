@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Desert</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <div class="row align-items-center">
+
+            <div class="col-7">
+                <img th:src="@{/images/Placeholder.png}" alt="Desert">
+            </div>
+
+            <div class="col-5">
+
+                <h1 class="h1" th:text="${desert.getName()}"></h1>
+
+                <h2 class="h2" th:text="${'$' + desert.getCost()}"></h2>
+
+                <p class="p" th:text="${desert.getDescription()}"></p>
+
+                <form>
+                    <div class="col">
+                        <div class="row align-items-center mb-3 g-3">
+                            <div class="col-auto">
+                                <input id="quantity" class="form-control" type="number" min="0" max="10" placeholder="0">
+                            </div>
+                            <div class="col-auto">
+                                <label class="col-form-label col-form-label-lg" for="quantity">Quantity</label>
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <button class="btn btn-primary" type="submit">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
