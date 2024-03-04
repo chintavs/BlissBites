@@ -8,4 +8,5 @@ import java.util.List;
 public interface IShoppingCartService {
     public boolean addToShoppingCart(Desert desert, int quantity);
     public List<ShoppingCartItem> getAllShoppingCartItems();
+    public ShoppingCartItem getShoppingCartItem(Desert desert);
 }

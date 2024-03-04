@@ -16,4 +16,10 @@ public class ShoppingCartService implements IShoppingCartService {
     public List<ShoppingCartItem> getAllShoppingCartItems() {
         return null;
     }
+
+    @Override
+    public ShoppingCartItem getShoppingCartItem(Desert desert) {
+
+        return null;
+    }
 }
