@@ -19,7 +19,6 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Override
     public ShoppingCartItem getShoppingCartItem(Desert desert) {
-
         return null;
     }
 }
