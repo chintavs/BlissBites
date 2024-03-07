@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/cart")
 public class ShoppingCartItemController {
     public List<ShoppingCartItem> shoppingCart = new ArrayList<>();
