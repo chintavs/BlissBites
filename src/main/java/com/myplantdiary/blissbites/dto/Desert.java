@@ -6,7 +6,7 @@ import lombok.Data;
 public class Desert {
     private int id;
     private String name;
-    private int size;
+    private int stockCount;
     private double cost;
     private String description;
     private String type;
