@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Store</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+        .sidebar {
+            position: fixed;
+            top: 56px;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        }
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: .5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: black;
+        }
+        .nav-link .icon {
+            margin-right: 5px;
+            width: 24px;
+            aspect-ratio: auto;
+        }
+        @media (max-width: 991.98px) {
+            .sidebar {
+                top: 0;
+            }
+        }   
+    </style>
+</head>
+<body>
+
+       <!-- Top Navbar -->
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Bliss Bites</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Side Navbar -->
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar text-left">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <img src="./Icons/allProductsIcon.png" class="icon" alt="All Products">
+                        All Products
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./Icons/cakeIcon.png" class="icon" alt="Cake">
+                        Cake
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./Icons/cookiesIcon.png" class="icon" alt="Cookies">
+                        Cookies
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="./Icons/brownieIcon.png" class="icon" alt="Brownies">
+                        Brownies
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Welcome to the Store!</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="./Icons/Vanilla-Cake-SQ.jpg" alt="Product 1">
+                    <div class="card-body">
+                        <h4 class="card-title">Vanilla Cake</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
+                        <p class="card-text">$19.99</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/chocolateCake.jpg" alt="Product 2">
+                    <div class="card-body">
+                        <h4 class="card-title">Chocolate Cake</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$19.99</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/Small-Batch-Chocolate-Chip-Cookies-4s.jpg" alt="Product 3">
+                    <div class="card-body">
+                        <h4 class="card-title">Chocolate Chip Cookies</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$7.99</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/SugarCookies.jpg" alt="Product 4">
+                    <div class="card-body">
+                        <h4 class="card-title">Sugar Cookies</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$7.99</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/Oatmeal-Cookies.jpg" alt="Product 5">
+                    <div class="card-body">
+                        <h4 class="card-title">Oatmeal Raisin Cookies</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$7.99</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/Snickdoodles.jpg" alt="Product 6">
+                    <div class="card-body">
+                        <h4 class="card-title">Snickerdoodle Cookies</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$7.99</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/Chocolatebrownie.JPG" alt="Product 7">
+                    <div class="card-body">
+                        <h4 class="card-title">Chocolate Brownie</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$3.99</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <img class="card-img-top" src="Icons/Peanut-Butter-Stuffed-Brownies-SQUARE.jpg" alt="Product 8">
+                    <div class="card-body">
+                        <h4 class="card-title">Peanut Butter Brownie</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="card-text">$3.99</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
