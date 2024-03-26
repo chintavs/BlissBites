@@ -1,0 +1,43 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk
+
+    steps:
+      - checkout
+
+      - run:
+          name: Build with Maven
+          command: mvn -B package --file pom.xml
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: maven-{{ checksum "pom.xml" }}
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - target/
+
+  test:
+    docker:
+      - image: circleci/openjdk:11-jdk
+
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Run tests
+          command: mvn test --file /tmp/workspace/pom.xml
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
