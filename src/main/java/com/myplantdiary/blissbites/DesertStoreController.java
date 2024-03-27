@@ -15,14 +15,13 @@ import java.util.List;
 public class DesertStoreController {
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("message", "Welcome to Bliss Bites!");
-        return "index"; // returning index.html
+    public String home() {
+        return "store";
     }
 
-    @GetMapping("/store")
-    public String store(Model model) {
-        return "store"; // returning store.html
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
     }
 
     @RequestMapping("/desert/{desertId}")
