@@ -1,5 +1,8 @@
 package com.myplantdiary.blissbites.repository;
 
-public interface IShoppingCartDAO {
+import com.myplantdiary.blissbites.dto.ShoppingCartItem;
+import org.springframework.data.repository.CrudRepository;
+
+public interface IShoppingCartDAO extends CrudRepository<ShoppingCartItem, Integer> {
 
 }
