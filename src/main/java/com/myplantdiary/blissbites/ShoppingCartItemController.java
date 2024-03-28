@@ -1,8 +1,11 @@
 package com.myplantdiary.blissbites;
 
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,24 +27,31 @@ public class ShoppingCartItemController {
                 return item;
             }
         }
-
         return null;
     }
 
+
     @PostMapping("/add")
-    public void addToCart(@RequestBody ShoppingCartItem item){
-        shoppingCart.add(item);
+    public ResponseEntity<Void> addToCart(@RequestBody ShoppingCartItem item) {
+        if (shoppingCart.contains(item)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } else {
+            shoppingCart.add(item);
+            return ResponseEntity.ok().build();
+        }
     }
 
+
     @PutMapping("update/{id}")
-    public void updateItem(@PathVariable("id") int id, @RequestBody ShoppingCartItem newItem){
-        for(int i = 0; i < shoppingCart.size(); i++){
+    public ResponseEntity<Void> updateItem(@PathVariable("id") int id, @RequestBody ShoppingCartItem newItem) {
+        for (int i = 0; i < shoppingCart.size(); i++) {
             ShoppingCartItem item = shoppingCart.get(i);
-            if(item.getId() == id){
+            if (item.getId() == id) {
                 shoppingCart.set(i, newItem);
-                return;
+                return ResponseEntity.ok().build();
             }
         }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/delete/{id}")
