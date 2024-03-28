@@ -2,11 +2,14 @@ package com.myplantdiary.blissbites;
 
 import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
+import com.myplantdiary.blissbites.service.interfaces.IDesertService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +17,16 @@ import java.util.List;
 @Controller
 public class DesertStoreController {
 
+    @Autowired
+    private IDesertService desertService;
+
     @GetMapping("/")
-    public String home() {
-        return "store";
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Desert> allDeserts = desertService.getAllDeserts();
+        modelAndView.addObject("deserts", allDeserts);
+        modelAndView.setViewName("store");
+        return modelAndView;
     }
 
     @GetMapping("/contact")
