@@ -6,6 +6,8 @@ import com.myplantdiary.blissbites.service.implementation.ShoppingCartService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -37,8 +39,8 @@ class BlissbitesApplicationTests {
     }
 
     private void thenDessertIsInCart() {
-        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert1);
-        assertEquals(dessert1, cartItem.getDesert());
+        Optional<ShoppingCartItem> cartItem = shoppingCartService.getShoppingCartItem(dessert1.getId());
+        assertEquals(dessert1, cartItem.get().getDesert());
     }
 
     @Test
@@ -62,7 +64,7 @@ class BlissbitesApplicationTests {
     }
 
     private void thenDessertIsNotInCart() {
-        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert2);
+        Optional<ShoppingCartItem> cartItem = shoppingCartService.getShoppingCartItem(dessert2.getId());
         assertNull(cartItem);
     }
 }

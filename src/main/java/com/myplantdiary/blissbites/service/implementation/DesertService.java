@@ -1,28 +1,20 @@
 package com.myplantdiary.blissbites.service.implementation;
 
 import com.myplantdiary.blissbites.dto.Desert;
+import com.myplantdiary.blissbites.repository.IDesertDAO;
 import com.myplantdiary.blissbites.service.interfaces.IDesertService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DesertService implements IDesertService {
+    @Autowired
+    IDesertDAO desertDao;
     @Override
     public List<Desert> getAllDeserts() {
-        return null;
-    }
-
-    @Override
-    public boolean saveDesert(Desert desert) {
-        return false;
-    }
-
-    @Override
-    public boolean editDesert(Desert desert) {
-        return false;
-    }
-
-    @Override
-    public boolean addDesert(Desert desert, int quantity) {
-        return false;
+        return (List<Desert>) desertDao.findAll();
     }
 }

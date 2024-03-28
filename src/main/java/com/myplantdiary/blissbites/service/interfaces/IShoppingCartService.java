@@ -4,9 +4,10 @@ import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IShoppingCartService {
-    public boolean addToShoppingCart(Desert desert, int quantity);
+    public ShoppingCartItem addToShoppingCart(Desert desert, int quantity);
     public List<ShoppingCartItem> getAllShoppingCartItems();
-    public ShoppingCartItem getShoppingCartItem(Desert desert);
+    public Optional<ShoppingCartItem> getShoppingCartItem(int id);
 }
