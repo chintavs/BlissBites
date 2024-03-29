@@ -15,7 +15,7 @@
         <div class="row align-items-center">
 
             <div class="col-7">
-                <img th:src="@{/images/Placeholder.png}" alt="Desert">
+                <img th:src="${desert.imageLink}" th:alt="${desert.name}" width="50%">
             </div>
 
             <div class="col-5">
@@ -30,7 +30,7 @@
                     <div class="col">
                         <div class="row align-items-center mb-3 g-3">
                             <div class="col-auto">
-                                <input id="quantity" class="form-control" type="number" min="0" max="10" placeholder="0">
+                                <input id="quantity" class="form-control" type="number" min="0" th:max="${desert.stockCount}" placeholder="0">
                             </div>
                             <div class="col-auto">
                                 <label class="col-form-label col-form-label-lg" for="quantity">Quantity</label>

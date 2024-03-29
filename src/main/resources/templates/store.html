@@ -28,7 +28,7 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        .nav-link {
+        .sidebar-sticky .nav-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -88,93 +88,18 @@
             <h1 class="h2">Welcome to the Store!</h1>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="./Icons/Vanilla-Cake-SQ.jpg" alt="Product 1">
-                    <div class="card-body">
-                        <h4 class="card-title">Vanilla Cake</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed.</p>
-                        <p class="card-text">$19.99</p>
-                    </div>
+                <div class="col-lg-3 col-md-6 mb-4" th:each="desert : ${deserts}">
+                    <a th:href="${'/desert/' + desert.id}" style="text-decoration: none">
+                        <div class="card h-100 border-0">
+                            <img class="card-img-top" th:src="${desert.imageLink}" th:alt="${desert.name}">
+                            <div class="card-body text-center">
+                                <h4 class="card-title" th:text="${desert.name}"></h4>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/chocolateCake.jpg" alt="Product 2">
-                    <div class="card-body">
-                        <h4 class="card-title">Chocolate Cake</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$19.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/Small-Batch-Chocolate-Chip-Cookies-4s.jpg" alt="Product 3">
-                    <div class="card-body">
-                        <h4 class="card-title">Chocolate Chip Cookies</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$7.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/SugarCookies.jpg" alt="Product 4">
-                    <div class="card-body">
-                        <h4 class="card-title">Sugar Cookies</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$7.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/Oatmeal-Cookies.jpg" alt="Product 5">
-                    <div class="card-body">
-                        <h4 class="card-title">Oatmeal Raisin Cookies</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$7.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/Snickdoodles.jpg" alt="Product 6">
-                    <div class="card-body">
-                        <h4 class="card-title">Snickerdoodle Cookies</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$7.99</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/Chocolatebrownie.JPG" alt="Product 7">
-                    <div class="card-body">
-                        <h4 class="card-title">Chocolate Brownie</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$3.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                    <img class="card-img-top" src="Icons/Peanut-Butter-Stuffed-Brownies-SQUARE.jpg" alt="Product 8">
-                    <div class="card-body">
-                        <h4 class="card-title">Peanut Butter Brownie</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="card-text">$3.99</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -35,14 +35,12 @@ public class DesertStoreController {
     }
 
     @RequestMapping("/desert/{desertId}")
-    public String desertDetails(@PathVariable("desertId") int desertId, Model model){
-        //TODO fetch desert from database
-        Desert desert = new Desert();
-        desert.setName("Cake " + desertId);
-        desert.setDescription("This is the description for desert number " + desertId);
-        desert.setCost(24.99);
-        model.addAttribute("desert", desert);
-        return "desertDetails";
+    public ModelAndView desertDetails(@PathVariable("desertId") int desertId){
+        ModelAndView modelAndView = new ModelAndView();
+        Desert desert = desertService.getDesertById(desertId);
+        modelAndView.addObject("desert", desert);
+        modelAndView.setViewName("desertDetails");
+        return modelAndView;
     }
 
     @RequestMapping("/cart")
