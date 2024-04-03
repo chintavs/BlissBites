@@ -27,7 +27,7 @@
 
     <div class="row border-bottom border-black border-3 align-items-center" th:each="cartItem: ${cartItems}">
         <div class="col-4">
-            <img class="img-fluid" src="/images/Placeholder.png" alt="Desert" width="50%">
+            <img class="img-fluid" th:src="${cartItem.getDesert().getImageLink()}" alt="Desert" width="50%">
         </div>
         <div class="col-4">
             <h3 th:text="${cartItem.getDesert().getName()}">Cake 1</h3>

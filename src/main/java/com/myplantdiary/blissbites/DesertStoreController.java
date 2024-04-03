@@ -3,6 +3,7 @@ package com.myplantdiary.blissbites;
 import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
 import com.myplantdiary.blissbites.service.interfaces.IDesertService;
+import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ public class DesertStoreController {
 
     @Autowired
     private IDesertService desertService;
+
+    @Autowired
+    private IShoppingCartService shoppingCartService;
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -38,7 +42,10 @@ public class DesertStoreController {
     public ModelAndView desertDetails(@PathVariable("desertId") int desertId){
         ModelAndView modelAndView = new ModelAndView();
         Desert desert = desertService.getDesertById(desertId);
+        ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+        shoppingCartItem.setDesert(desert);
         modelAndView.addObject("desert", desert);
+        modelAndView.addObject("shoppingCartItem", shoppingCartItem);
         modelAndView.setViewName("desertDetails");
         return modelAndView;
     }
@@ -48,27 +55,10 @@ public class DesertStoreController {
         List<ShoppingCartItem> cartItems = new ArrayList<>();
         double total = 0.00;
 
-        //TODO fetch cart from database
-        Desert desert1 = new Desert();
-        desert1.setName("Cake 4");
-        desert1.setCost(12.99);
+        List<ShoppingCartItem> allShoppingCartItems = shoppingCartService.getAllShoppingCartItems();
 
-        Desert desert2 = new Desert();
-        desert2.setName("Cookie 1");
-        desert2.setCost(2.50);
-
-        ShoppingCartItem item1 = new ShoppingCartItem();
-        item1.setDesert(desert1);
-        item1.setQuantity(4);
-
-        ShoppingCartItem item2 = new ShoppingCartItem();
-        item2.setDesert(desert2);
-        item2.setQuantity(2);
-
-        cartItems.add(item1);
-        cartItems.add(item2);
-
-        for (ShoppingCartItem cartItem : cartItems) {
+        for (ShoppingCartItem cartItem : allShoppingCartItems) {
+            cartItems.add(shoppingCartService.getShoppingCartItem(cartItem.getId()));
             total += cartItem.getDesert().getCost() * cartItem.getQuantity();
         }
 

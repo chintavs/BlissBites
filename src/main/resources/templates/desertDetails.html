@@ -26,16 +26,17 @@
 
                 <p class="p" th:text="${desert.getDescription()}"></p>
 
-                <form>
+                <form action="#" th:action="@{/cart/add}"  th:object="${shoppingCartItem}" method="POST">
                     <div class="col">
                         <div class="row align-items-center mb-3 g-3">
                             <div class="col-auto">
-                                <input id="quantity" class="form-control" type="number" min="0" th:max="${desert.stockCount}" placeholder="0">
+                                <input id="quantity" th:field="*{quantity}" class="form-control" type="number" min="0" th:max="${desert.stockCount}" placeholder="0">
                             </div>
                             <div class="col-auto">
                                 <label class="col-form-label col-form-label-lg" for="quantity">Quantity</label>
                             </div>
                         </div>
+                        <input type="hidden" th:value="${desert}" th:field="*{desert}" />
                         <div class="row g-0">
                             <button class="btn btn-primary" type="submit">Add to Cart</button>
                         </div>

@@ -1,16 +1,22 @@
 package com.myplantdiary.blissbites;
 
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
+import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/cart")
 public class ShoppingCartItemController {
     public List<ShoppingCartItem> shoppingCart = new ArrayList<>();
+    @Autowired
+    private IShoppingCartService shoppingCartService;
 
     @GetMapping("/items")
     public List<ShoppingCartItem> getAllItems() {
@@ -29,8 +35,9 @@ public class ShoppingCartItemController {
     }
 
     @PostMapping("/add")
-    public void addToCart(@RequestBody ShoppingCartItem item){
-        shoppingCart.add(item);
+    public String addToCart(ShoppingCartItem item){
+        shoppingCartService.addToShoppingCart(item);
+        return "redirect:/cart";
     }
 
     @PutMapping("update/{id}")
