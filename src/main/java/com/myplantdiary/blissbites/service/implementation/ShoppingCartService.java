@@ -15,8 +15,8 @@ public class ShoppingCartService implements IShoppingCartService {
     @Autowired
     IShoppingCartDAO shoppingCartDao;
     @Override
-    public ShoppingCartItem addToShoppingCart(Desert desert, int quantity) {
-        return shoppingCartDao.save(new ShoppingCartItem(desert, quantity));
+    public ShoppingCartItem addToShoppingCart(ShoppingCartItem shoppingCartItem) {
+        return shoppingCartDao.save(shoppingCartItem);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ShoppingCartService implements IShoppingCartService {
     }
 
     @Override
-    public Optional<ShoppingCartItem> getShoppingCartItem(int id) {
-        return shoppingCartDao.findById(id);
+    public ShoppingCartItem getShoppingCartItem(int id) {
+        return shoppingCartDao.findById(id).get();
     }
 }

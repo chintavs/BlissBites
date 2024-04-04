@@ -8,6 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<!-- Top Navbar -->
+<header th:insert="fragments/topNavBar.html :: topNavBar"></header>
+
 <div class="container text-center mt-5">
     <h1 class="display-1 fw-bold">Cart</h1>
 </div>
@@ -23,7 +27,7 @@
 
     <div class="row border-bottom border-black border-3 align-items-center" th:each="cartItem: ${cartItems}">
         <div class="col-4">
-            <img class="img-fluid" src="/images/Placeholder.png" alt="Desert" width="50%">
+            <img class="img-fluid" th:src="${cartItem.getDesert().getImageLink()}" alt="Desert" width="50%">
         </div>
         <div class="col-4">
             <h3 th:text="${cartItem.getDesert().getName()}">Cake 1</h3>
