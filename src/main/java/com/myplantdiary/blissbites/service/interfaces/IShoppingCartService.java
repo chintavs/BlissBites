@@ -10,4 +10,5 @@ public interface IShoppingCartService {
     public ShoppingCartItem addToShoppingCart(Desert desert, int quantity);
     public List<ShoppingCartItem> getAllShoppingCartItems();
     public Optional<ShoppingCartItem> getShoppingCartItem(int id);
+    public void deleteShoppingCartItem(int id);
 }

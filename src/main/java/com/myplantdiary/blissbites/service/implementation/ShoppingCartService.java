@@ -28,4 +28,9 @@ public class ShoppingCartService implements IShoppingCartService {
     public Optional<ShoppingCartItem> getShoppingCartItem(int id) {
         return shoppingCartDao.findById(id);
     }
+
+    @Override
+    public void deleteShoppingCartItem(int id){
+        shoppingCartDao.deleteById(id);
+    }
 }
