@@ -46,7 +46,9 @@
         </div>
         <div class="col-4">
             <h2 class="h2 fw-bold" th:text="${'$' + total}"></h2>
-            <button class="btn btn-primary">Checkout</button>
+            <form th:action="@{/thankYou}" method="post">
+                <button type="submit" class="btn btn-primary">Checkout</button>
+            </form>
         </div>
     </div>
 </div>

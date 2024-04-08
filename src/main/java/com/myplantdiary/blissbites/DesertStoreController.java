@@ -67,4 +67,16 @@ public class DesertStoreController {
 
         return "cart";
     }
+    @RequestMapping("/thankYou")
+    public String thankYou() {
+        List<ShoppingCartItem> cartItems = shoppingCartService.getAllShoppingCartItems();
+        for(ShoppingCartItem item : cartItems){
+            Desert desert = desertService.getDesertById(item.getId());
+            desert.setStockCount(desert.getStockCount() - item.getQuantity());
+            desertService.save(desert);
+        }
+        shoppingCartService.deleteAll();
+
+        return "thankYou";
+    }
 }

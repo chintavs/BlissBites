@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface IDesertService {
     List<Desert> getAllDeserts();
     Desert getDesertById(int Id);
+    void save(Desert desert);
 }

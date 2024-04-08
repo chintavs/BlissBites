@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DesertService implements IDesertService {
@@ -22,5 +21,8 @@ public class DesertService implements IDesertService {
     public Desert getDesertById(int Id) {
         return desertDao.findById(Id).get();
     }
+
+    @Override
+    public void save(Desert desert) {desertDao.save(desert);}
 
 }
