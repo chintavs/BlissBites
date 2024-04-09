@@ -31,9 +31,4 @@ public class ShoppingCartService implements IShoppingCartService {
     public void deleteAll() {
         shoppingCartDao.deleteAll();
     }
-
-    @Override
-    public void deleteShoppingCartItem(int id){
-        shoppingCartDao.deleteById(id);
-    }
 }
