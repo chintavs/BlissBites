@@ -1,6 +1,5 @@
 package com.myplantdiary.blissbites.service.implementation;
 
-import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
 import com.myplantdiary.blissbites.repository.IShoppingCartDAO;
 import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
@@ -8,15 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShoppingCartService implements IShoppingCartService {
     @Autowired
     IShoppingCartDAO shoppingCartDao;
     @Override
-    public ShoppingCartItem addToShoppingCart(Desert desert, int quantity) {
-        return shoppingCartDao.save(new ShoppingCartItem(desert, quantity));
+    public ShoppingCartItem addToShoppingCart(ShoppingCartItem shoppingCartItem) {
+        return shoppingCartDao.save(shoppingCartItem);
     }
 
     @Override
@@ -25,8 +23,13 @@ public class ShoppingCartService implements IShoppingCartService {
     }
 
     @Override
-    public Optional<ShoppingCartItem> getShoppingCartItem(int id) {
-        return shoppingCartDao.findById(id);
+    public ShoppingCartItem getShoppingCartItem(int id) {
+        return shoppingCartDao.findById(id).get();
+    }
+
+    @Override
+    public void deleteAll() {
+        shoppingCartDao.deleteAll();
     }
 
     @Override

@@ -2,11 +2,15 @@ package com.myplantdiary.blissbites;
 
 import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
+import com.myplantdiary.blissbites.service.interfaces.IDesertService;
+import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,26 +18,36 @@ import java.util.List;
 @Controller
 public class DesertStoreController {
 
+    @Autowired
+    private IDesertService desertService;
+
+    @Autowired
+    private IShoppingCartService shoppingCartService;
+
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("message", "Welcome to Bliss Bites!");
-        return "index"; // returning index.html
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Desert> allDeserts = desertService.getAllDeserts();
+        modelAndView.addObject("deserts", allDeserts);
+        modelAndView.setViewName("store");
+        return modelAndView;
     }
 
-    @GetMapping("/store")
-    public String store(Model model) {
-        return "store"; // returning store.html
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
     }
 
     @RequestMapping("/desert/{desertId}")
-    public String desertDetails(@PathVariable("desertId") int desertId, Model model){
-        //TODO fetch desert from database
-        Desert desert = new Desert();
-        desert.setName("Cake " + desertId);
-        desert.setDescription("This is the description for desert number " + desertId);
-        desert.setCost(24.99);
-        model.addAttribute("desert", desert);
-        return "desertDetails";
+    public ModelAndView desertDetails(@PathVariable("desertId") int desertId){
+        ModelAndView modelAndView = new ModelAndView();
+        Desert desert = desertService.getDesertById(desertId);
+        ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+        shoppingCartItem.setDesert(desert);
+        modelAndView.addObject("desert", desert);
+        modelAndView.addObject("shoppingCartItem", shoppingCartItem);
+        modelAndView.setViewName("desertDetails");
+        return modelAndView;
     }
 
     @RequestMapping("/cart")
@@ -41,27 +55,10 @@ public class DesertStoreController {
         List<ShoppingCartItem> cartItems = new ArrayList<>();
         double total = 0.00;
 
-        //TODO fetch cart from database
-        Desert desert1 = new Desert();
-        desert1.setName("Cake 4");
-        desert1.setCost(12.99);
+        List<ShoppingCartItem> allShoppingCartItems = shoppingCartService.getAllShoppingCartItems();
 
-        Desert desert2 = new Desert();
-        desert2.setName("Cookie 1");
-        desert2.setCost(2.50);
-
-        ShoppingCartItem item1 = new ShoppingCartItem();
-        item1.setDesert(desert1);
-        item1.setQuantity(4);
-
-        ShoppingCartItem item2 = new ShoppingCartItem();
-        item2.setDesert(desert2);
-        item2.setQuantity(2);
-
-        cartItems.add(item1);
-        cartItems.add(item2);
-
-        for (ShoppingCartItem cartItem : cartItems) {
+        for (ShoppingCartItem cartItem : allShoppingCartItems) {
+            cartItems.add(shoppingCartService.getShoppingCartItem(cartItem.getId()));
             total += cartItem.getDesert().getCost() * cartItem.getQuantity();
         }
 
@@ -69,5 +66,17 @@ public class DesertStoreController {
         model.addAttribute("total", total);
 
         return "cart";
+    }
+    @RequestMapping("/thankYou")
+    public String thankYou() {
+        List<ShoppingCartItem> cartItems = shoppingCartService.getAllShoppingCartItems();
+        for(ShoppingCartItem item : cartItems){
+            Desert desert = desertService.getDesertById(item.getId());
+            desert.setStockCount(desert.getStockCount() - item.getQuantity());
+            desertService.save(desert);
+        }
+        shoppingCartService.deleteAll();
+
+        return "thankYou";
     }
 }

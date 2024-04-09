@@ -35,12 +35,15 @@ class BlissbitesApplicationTests {
     }
 
     private void whenUserAddsDessertToShoppingCart() {
-        shoppingCartService.addToShoppingCart(dessert1, 1);
+        ShoppingCartItem cartItem = new ShoppingCartItem();
+        cartItem.setQuantity(1);
+        cartItem.setDesert(dessert1);
+        shoppingCartService.addToShoppingCart(cartItem);
     }
 
     private void thenDessertIsInCart() {
-        Optional<ShoppingCartItem> cartItem = shoppingCartService.getShoppingCartItem(dessert1.getId());
-        assertEquals(dessert1, cartItem.get().getDesert());
+        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert1.getId());
+        assertEquals(dessert1, cartItem.getDesert());
     }
 
     @Test
@@ -60,11 +63,14 @@ class BlissbitesApplicationTests {
     }
 
     private void whenUserAddsUnavailableDessertToShoppingCart() {
-        shoppingCartService.addToShoppingCart(dessert2, 3);
+        ShoppingCartItem cartItem = new ShoppingCartItem();
+        cartItem.setDesert(dessert2);
+        cartItem.setQuantity(1);
+        shoppingCartService.addToShoppingCart(cartItem);
     }
 
     private void thenDessertIsNotInCart() {
-        Optional<ShoppingCartItem> cartItem = shoppingCartService.getShoppingCartItem(dessert2.getId());
+        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert2.getId());
         assertNull(cartItem);
     }
 }
