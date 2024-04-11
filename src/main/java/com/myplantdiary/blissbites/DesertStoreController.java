@@ -71,12 +71,11 @@ public class DesertStoreController {
     public String thankYou() {
         List<ShoppingCartItem> cartItems = shoppingCartService.getAllShoppingCartItems();
         for(ShoppingCartItem item : cartItems){
-            Desert desert = desertService.getDesertById(item.getId());
+            Desert desert = desertService.getDesertById(item.getDesert().getId());
             desert.setStockCount(desert.getStockCount() - item.getQuantity());
             desertService.save(desert);
         }
         shoppingCartService.deleteAll();
-
         return "thankYou";
     }
 }
