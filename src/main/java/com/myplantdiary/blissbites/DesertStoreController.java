@@ -76,7 +76,6 @@ public class DesertStoreController {
             desertService.save(desert);
         }
         shoppingCartService.deleteAll();
-
         return "thankYou";
     }
 }
