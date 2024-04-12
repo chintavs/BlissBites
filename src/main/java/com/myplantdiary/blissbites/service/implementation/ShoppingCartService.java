@@ -6,6 +6,7 @@ import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,12 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Override
     public List<ShoppingCartItem> getAllShoppingCartItems() {
-        return (List<ShoppingCartItem>) shoppingCartDao.findAll();
+        List<ShoppingCartItem> allCartItems = new ArrayList<>();
+        Iterable<ShoppingCartItem> cartItems = shoppingCartDao.findAll();
+        for(ShoppingCartItem cartItem : cartItems){
+            allCartItems.add(cartItem);
+        }
+        return allCartItems;
     }
 
     @Override

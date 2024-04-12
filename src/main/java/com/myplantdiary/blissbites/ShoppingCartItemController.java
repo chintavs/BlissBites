@@ -28,8 +28,14 @@ public class ShoppingCartItemController {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/items")
-    public List<ShoppingCartItem> getAllItems() {
-        return shoppingCartService.getAllShoppingCartItems();
+    public ResponseEntity getAllItems() {
+        List<ShoppingCartItem> cartItems = shoppingCartService.getAllShoppingCartItems();
+        if(!cartItems.isEmpty()){
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(cartItems, headers, HttpStatus.OK);
+        }
+        return null;
     }
 
     @GetMapping("/items/{id}")
@@ -50,13 +56,13 @@ public class ShoppingCartItemController {
     }
 
     @PostMapping("/addItem")
-    public ResponseEntity addItemToCart(@RequestBody Desert desert, int quantity){
-        ShoppingCartItem newCartItem = null;
+    public ResponseEntity addItemToCart(@RequestBody ShoppingCartItem cartItem){
+        ShoppingCartItem newCartItem = new ShoppingCartItem();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         try{
-            newCartItem.setDesert(desert);
-            newCartItem.setQuantity(quantity);
+            newCartItem.setDesert(cartItem.getDesert());
+            newCartItem.setQuantity(cartItem.getQuantity());
             shoppingCartService.addToShoppingCart(newCartItem);
         } catch (Exception e){
             return new ResponseEntity(headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,12 +71,14 @@ public class ShoppingCartItemController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteItem(){
+    public ResponseEntity deleteItem(){
         try{
             shoppingCartService.deleteAll();
             log.info("Successfully deleted all shopping cart items.");
+            return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e){
             log.error("Unable to delete shopping cart items. Message: " + e.getMessage(), e);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -27,7 +27,7 @@
 
     <div class="row border-bottom border-black border-3 align-items-center" th:each="cartItem: ${cartItems}">
         <div class="col-4">
-            <img class="img-fluid" src="/images/Placeholder.png" alt="Desert" width="50%">
+            <img class="img-fluid" th:src="${cartItem.getDesert().getImageLink()}" alt="Desert" width="50%">
         </div>
         <div class="col-4">
             <h3 th:text="${cartItem.getDesert().getName()}">Cake 1</h3>
@@ -46,7 +46,9 @@
         </div>
         <div class="col-4">
             <h2 class="h2 fw-bold" th:text="${'$' + total}"></h2>
-            <button class="btn btn-primary">Checkout</button>
+            <form th:action="@{/thankYou}" method="post">
+                <button type="submit" class="btn btn-primary">Checkout</button>
+            </form>
         </div>
     </div>
 </div>
