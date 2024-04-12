@@ -13,7 +13,6 @@
         }
         .sidebar {
             position: fixed;
-            top: 56px;
             bottom: 0;
             left: 0;
             z-index: 100;
@@ -70,7 +69,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="filterCards('Cookie')">
-                    <img src="https://img.icons8.com/?size=256&id=4047&format=png" class="icon" alt="Cookies">
+                    <img src="https://img.icons8.com/?size=256&id=8360&format=png" class="icon" alt="Cookies">
                     Cookies
                 </a>
             </li>
@@ -80,16 +79,22 @@
                     Pies
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filterCards('Ice Cream')">
+                    <img src="https://img.icons8.com/?size=256&id=8461&format=png" class="icon" alt="Ice Cream">
+                    Ice Cream
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
 
-<main role="main" class="col-md-8 ml-sm-auto col-lg-10 container">
+<main role="main" class="col-md-8 ml-sm-auto col-lg-10 container mt-5">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Welcome to the Store!</h1>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4" th:each="desert : ${deserts}" data-category="${desert.type}">
+        <div class="col-lg-3 col-md-6 mb-4" th:each="desert : ${deserts}" th:data-category="${desert.type}">
             <a th:href="${'/desert/' + desert.id}" style="text-decoration: none">
                 <div class="card h-100 border-0">
                     <img class="card-img-top" th:src="${desert.imageLink}" th:alt="${desert.name}">

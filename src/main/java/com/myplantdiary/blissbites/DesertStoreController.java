@@ -63,7 +63,7 @@ public class DesertStoreController {
         }
 
         model.addAttribute("cartItems", cartItems);
-        model.addAttribute("total", total);
+        model.addAttribute("total", String.format("%.2f", total));
 
         return "cart";
     }
