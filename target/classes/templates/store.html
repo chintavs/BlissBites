@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-Cli    <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -57,25 +57,25 @@ Cli    <meta charset="utf-8">
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
-                        <img src="./Icons/allProductsIcon.png" class="icon" alt="All Products">
+                        <img src="https://img.icons8.com/?size=256&id=5479&format=png" class="icon" alt="All Products">
                         All Products
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <img src="./Icons/cakeIcon.png" class="icon" alt="Cake">
+                        <img src="https://img.icons8.com/?size=256&id=8449&format=png" class="icon" alt="Cake">
                         Cake
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <img src="./Icons/cookiesIcon.png" class="icon" alt="Cookies">
+                        <img src="https://img.icons8.com/?size=256&id=4047&format=png" class="icon" alt="Cookies">
                         Cookies
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <img src="./Icons/brownieIcon.png" class="icon" alt="Brownies">
+                        <img src="https://img.icons8.com/?size=256&id=94Riz9ScNqRf&format=png" class="icon" alt="Brownies">
                         Brownies
                     </a>
                 </li>
@@ -90,12 +90,12 @@ Cli    <meta charset="utf-8">
         <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4" th:each="desert : ${deserts}">
                     <a th:href="${'/desert/' + desert.id}" style="text-decoration: none">
-                    <div class="card h-100 border-0">
-                        <img class="card-img-top" th:src="${desert.imageLink}" th:alt="${desert.name}">
-                        <div class="card-body text-center">
-                            <h4 class="card-title" th:text="${desert.name}"></h4>
+                        <div class="card h-100 border-0">
+                            <img class="card-img-top" th:src="${desert.imageLink}" th:alt="${desert.name}">
+                            <div class="card-body text-center">
+                                <h4 class="card-title" th:text="${desert.name}"></h4>
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
         </div>
