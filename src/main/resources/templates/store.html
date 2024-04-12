@@ -48,58 +48,71 @@
 </head>
 <body>
 
-    <!-- Top Navbar -->
-    <header th:insert="fragments/topNavBar.html :: topNavBar"></header>
+<!-- Top Navbar -->
+<header th:insert="fragments/topNavBar.html :: topNavBar"></header>
 
-    <!-- Side Navbar -->
-    <nav class="col-md-2 col-lg-1 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">
-                        <img src="https://img.icons8.com/?size=256&id=5479&format=png" class="icon" alt="All Products">
-                        All Products
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="https://img.icons8.com/?size=256&id=8449&format=png" class="icon" alt="Cake">
-                        Cake
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="https://img.icons8.com/?size=256&id=4047&format=png" class="icon" alt="Cookies">
-                        Cookies
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="https://img.icons8.com/?size=256&id=94Riz9ScNqRf&format=png" class="icon" alt="Brownies">
-                        Brownies
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
-    <main role="main" class="col-md-8 ml-sm-auto col-lg-10 container">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Welcome to the Store!</h1>
-        </div>
-        <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4" th:each="desert : ${deserts}">
-                    <a th:href="${'/desert/' + desert.id}" style="text-decoration: none">
-                        <div class="card h-100 border-0">
-                            <img class="card-img-top" th:src="${desert.imageLink}" th:alt="${desert.name}">
-                            <div class="card-body text-center">
-                                <h4 class="card-title" th:text="${desert.name}"></h4>
-                            </div>
-                        </div>
-                    </a>
+<!-- Side Navbar -->
+<nav class="col-md-2 col-lg-1 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="filterCards('all')">
+                    <img src="https://img.icons8.com/?size=256&id=5479&format=png" class="icon" alt="All Products">
+                    All Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filterCards('Cake')">
+                    <img src="https://img.icons8.com/?size=256&id=8449&format=png" class="icon" alt="Cake">
+                    Cakes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filterCards('Cookie')">
+                    <img src="https://img.icons8.com/?size=256&id=4047&format=png" class="icon" alt="Cookies">
+                    Cookies
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="filterCards('Pie')">
+                    <img src="https://img.icons8.com/?size=256&id=96101&format=png" class="icon" alt="Pies">
+                    Pies
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="col-md-8 ml-sm-auto col-lg-10 container">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Welcome to the Store!</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4" th:each="desert : ${deserts}" data-category="${desert.type}">
+            <a th:href="${'/desert/' + desert.id}" style="text-decoration: none">
+                <div class="card h-100 border-0">
+                    <img class="card-img-top" th:src="${desert.imageLink}" th:alt="${desert.name}">
+                    <div class="card-body text-center">
+                        <h4 class="card-title" th:text="${desert.name}"></h4>
+                    </div>
                 </div>
+            </a>
         </div>
-    </main>
+    </div>
+</main>
 
+<script>
+    function filterCards(category) {
+        const cards = document.querySelectorAll('.col-lg-3');
+        cards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
 </body>
 </html>
