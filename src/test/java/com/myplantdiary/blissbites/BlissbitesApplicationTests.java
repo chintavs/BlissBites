@@ -2,11 +2,12 @@ package com.myplantdiary.blissbites;
 
 import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
-import com.myplantdiary.blissbites.service.implementation.ShoppingCartService;
+import com.myplantdiary.blissbites.repository.IShoppingCartDAO;
+import com.myplantdiary.blissbites.repository.ShoppingCartDAOStub;
+import com.myplantdiary.blissbites.service.implementation.ShoppingCartServiceStub;
+import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -14,63 +15,60 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @SpringBootTest
 class BlissbitesApplicationTests {
     
-    private ShoppingCartService shoppingCartService = new ShoppingCartService();
-    private Desert dessert1 = new Desert();
-    private Desert dessert2 = new Desert();
+    private IShoppingCartService shoppingCartService;
+    private IShoppingCartDAO shoppingCartDAO;
+    private Desert dessert = new Desert();
 
     @Test
-    void addDessertToShoppingCart() {
-        givenDessertDataAreAvailable();
+    void addDessertToShoppingCart() throws Exception {
+        givenDessertIsAvailable();
         whenUserAddsDessertToShoppingCart();
         thenDessertIsInCart();
     }
 
-    private void givenDessertDataAreAvailable() {
-        dessert1.setId(1);
-        dessert1.setName("Chocolate Cake");
-        dessert1.setStockCount(10);
-        dessert1.setType("Cake");
-        dessert1.setDescription("Delicious Chocolate Cake made with Hershey's");
-        dessert1.setCost(9.99);
+    private void givenDessertIsAvailable() {
+        dessert.setId(1);
+        dessert.setName("Chocolate Cake");
+        dessert.setStockCount(10);
+        dessert.setType("Cake");
+        dessert.setDescription("Delicious Chocolate Cake made with Hershey's");
+        dessert.setCost(9.99);
     }
 
     private void whenUserAddsDessertToShoppingCart() {
+        shoppingCartDAO = new ShoppingCartDAOStub();
+        shoppingCartService = new ShoppingCartServiceStub(shoppingCartDAO);
+
         ShoppingCartItem cartItem = new ShoppingCartItem();
+        cartItem.setId(dessert.getId());
         cartItem.setQuantity(1);
-        cartItem.setDesert(dessert1);
+        cartItem.setDesert(dessert);
         shoppingCartService.addToShoppingCart(cartItem);
     }
 
     private void thenDessertIsInCart() {
-        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert1.getId());
-        assertEquals(dessert1, cartItem.getDesert());
+        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert.getId());
+        assertEquals(dessert, cartItem.getDesert());
     }
 
     @Test
     void preventOutOfStockItemsInShoppingCart() {
         givenItemIsOutOfStock();
-        whenUserAddsUnavailableDessertToShoppingCart();
+        whenUserAddsDessertToShoppingCart();
         thenDessertIsNotInCart();
     }
 
     private void givenItemIsOutOfStock() {
-        dessert2.setId(1);
-        dessert2.setName("Chocolate Chip Cookie");
-        dessert2.setStockCount(0);
-        dessert2.setType("Cookie");
-        dessert2.setDescription("Delicious and Fresh Chocolate Chip Cookie");
-        dessert2.setCost(1.99);
-    }
-
-    private void whenUserAddsUnavailableDessertToShoppingCart() {
-        ShoppingCartItem cartItem = new ShoppingCartItem();
-        cartItem.setDesert(dessert2);
-        cartItem.setQuantity(1);
-        shoppingCartService.addToShoppingCart(cartItem);
+        dessert.setId(1);
+        dessert.setName("Chocolate Chip Cookie");
+        dessert.setStockCount(0);
+        dessert.setType("Cookie");
+        dessert.setDescription("Delicious and Fresh Chocolate Chip Cookie");
+        dessert.setCost(1.99);
     }
 
     private void thenDessertIsNotInCart() {
-        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert2.getId());
+        ShoppingCartItem cartItem = shoppingCartService.getShoppingCartItem(dessert.getId());
         assertNull(cartItem);
     }
 }

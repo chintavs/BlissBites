@@ -3,18 +3,19 @@ package com.myplantdiary.blissbites.service.implementation;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
 import com.myplantdiary.blissbites.repository.IShoppingCartDAO;
 import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-@Service
-public class ShoppingCartService implements IShoppingCartService {
-    @Qualifier("IShoppingCartDAO")
-    @Autowired
+public class ShoppingCartServiceStub implements IShoppingCartService {
+
     IShoppingCartDAO shoppingCartDao;
+
+    public ShoppingCartServiceStub(IShoppingCartDAO shoppingCartDao) {
+        this.shoppingCartDao = shoppingCartDao;
+    }
+
     @Override
     public ShoppingCartItem addToShoppingCart(ShoppingCartItem shoppingCartItem) {
         return shoppingCartDao.save(shoppingCartItem);
@@ -32,7 +33,12 @@ public class ShoppingCartService implements IShoppingCartService {
 
     @Override
     public ShoppingCartItem getShoppingCartItem(int id) {
-        return shoppingCartDao.findById(id).get();
+        try {
+            return shoppingCartDao.findById(id).get();
+        }
+        catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
     @Override
