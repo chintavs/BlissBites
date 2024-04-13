@@ -20,7 +20,7 @@ class BlissbitesApplicationTests {
     private Desert dessert = new Desert();
 
     @Test
-    void addDessertToShoppingCart() throws Exception {
+    void addDessertToShoppingCart() {
         givenDessertIsAvailable();
         whenUserAddsDessertToShoppingCart();
         thenDessertIsInCart();
