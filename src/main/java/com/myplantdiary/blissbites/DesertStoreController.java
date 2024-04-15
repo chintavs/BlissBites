@@ -15,6 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the controller for Desert store REST endpoints and web UI.
+ * </p>
+ * Handles UI interactions with for the Desert Store web page
+ */
 @Controller
 public class DesertStoreController {
 
@@ -24,6 +29,11 @@ public class DesertStoreController {
     @Autowired
     private IShoppingCartService shoppingCartService;
 
+    /**
+     * Handles the base endpoint (/)
+     *
+     * @return desert store starter web page
+     */
     @GetMapping("/")
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
@@ -38,6 +48,12 @@ public class DesertStoreController {
         return "contact";
     }
 
+    /**
+     * Handles the desert details view endpoint
+     *
+     * @param desertId the desert id
+     * @return modal and HTML view web page for specified desert
+     */
     @RequestMapping("/desert/{desertId}")
     public ModelAndView desertDetails(@PathVariable("desertId") int desertId){
         ModelAndView modelAndView = new ModelAndView();
@@ -50,6 +66,12 @@ public class DesertStoreController {
         return modelAndView;
     }
 
+    /**
+     * Handles the shopping cart view endpoint
+     *
+     * @param model the shopping cart list model
+     * @return the shopping cart list html view
+     */
     @RequestMapping("/cart")
     public String cart(Model model) {
         List<ShoppingCartItem> cartItems = new ArrayList<>();
@@ -67,6 +89,14 @@ public class DesertStoreController {
 
         return "cart";
     }
+
+    /**
+     * Handles the Thank-you web page after checking out from cart
+     * <p>
+     * Changes stock count of desert item based on checked out quantity
+     *
+     * @return the string
+     */
     @RequestMapping("/thankYou")
     public String thankYou() {
         List<ShoppingCartItem> cartItems = shoppingCartService.getAllShoppingCartItems();

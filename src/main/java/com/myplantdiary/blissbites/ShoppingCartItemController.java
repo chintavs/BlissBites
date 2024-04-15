@@ -1,6 +1,5 @@
 package com.myplantdiary.blissbites;
 
-import com.myplantdiary.blissbites.dto.Desert;
 import com.myplantdiary.blissbites.dto.ShoppingCartItem;
 import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
 import org.slf4j.Logger;
@@ -12,12 +11,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
-import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This is the controller for Shopping Cart REST endpoints and web UI.
+ * </p>
+ * It handles CRUD operations for the Shopping Cart list.
+ * </p>
+ * Handles UI interactions with Shopping Cart web page
+ */
 @Controller
 @RequestMapping("/cart")
 public class ShoppingCartItemController {
@@ -38,6 +40,13 @@ public class ShoppingCartItemController {
         return null;
     }
 
+    /**
+     * Gets cart item by given ID
+     *
+     * @param id the ID of the cart item in the list
+     *
+     * @return Status Code 200: Cart item found
+     */
     @GetMapping("/items/{id}")
     public ResponseEntity getItemById(@PathVariable("id") int id){
         ShoppingCartItem foundCartItem = shoppingCartService.getShoppingCartItem(id);
@@ -55,6 +64,14 @@ public class ShoppingCartItemController {
         return "redirect:/cart";
     }
 
+    /**
+     * Adds desert item to shopping cart
+     *
+     * @param cartItem the cart item that contains the selected desert
+     *
+     * @return Status Code 200: Item was successfully added to shopping cart
+     *         Status Code 500: Unable to add item to shopping cart
+     */
     @PostMapping("/addItem")
     public ResponseEntity addItemToCart(@RequestBody ShoppingCartItem cartItem){
         ShoppingCartItem newCartItem = new ShoppingCartItem();
@@ -70,6 +87,12 @@ public class ShoppingCartItemController {
         return new ResponseEntity(newCartItem, headers, HttpStatus.OK);
     }
 
+    /**
+     *  Removes all items from the shopping cart
+     *
+     * @return Status Code 200: Shopping Cart was successfully cleared
+     *         Status Code 500: Unable to clear shopping cart
+     */
     @DeleteMapping("/delete")
     public ResponseEntity deleteItem(){
         try{
