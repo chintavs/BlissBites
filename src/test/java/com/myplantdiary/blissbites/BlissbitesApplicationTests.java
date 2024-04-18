@@ -7,12 +7,11 @@ import com.myplantdiary.blissbites.repository.ShoppingCartDAOStub;
 import com.myplantdiary.blissbites.service.implementation.ShoppingCartServiceStub;
 import com.myplantdiary.blissbites.service.interfaces.IShoppingCartService;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-@SpringBootTest
+
 class BlissbitesApplicationTests {
     
     private IShoppingCartService shoppingCartService;
